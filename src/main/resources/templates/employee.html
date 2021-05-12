@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Employee</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://unpkg.com/gijgo@1.9.13/css/gijgo.min.css" rel="stylesheet" type="text/css" />
+
+    <link rel="stylesheet" th:href="@{css/employee.css}" href="">
+</head>
+<body>
+
+<nav class="navbar  navbar-dark shadow  d-flex">
+    <div class="container">
+        <a class="navbar-brand " >
+            <img th:src="@{img/logo.png}" width="50" height="50" class="d-inline-block align-top" alt="logo">
+        </a>
+        <a th:href="@{/logout}" class="btn btn-danger ">Déconnecter</a>
+
+    </div>
+</nav>
+
+<div class="container main">
+
+
+<h1 class="main-text">Demande :</h1>
+    <div th:if="${canNotSendDemande} and ${!isAccepted}" class="mt4" >
+        <div class="alert alert-info ">
+            Votre demande est en cours de traintement .
+        </div>
+    </div>
+    <div th:if="${isAccepted } " class="mt4" >
+        <div class="alert alert-success ">
+            Votre demande est acceptée .
+        </div>
+    </div>
+<form th:if="${!canNotSendDemande}" th:action="@{/demande}" method="POST">
+    <div class="form-group row">
+        <label for="cinEmploye" class="col-4 col-form-label">CIN</label>
+        <div class="col-8">
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <div class="input-group-text">
+                        <i class="fa fa-address-card"></i>
+                    </div>
+                </div>
+                <input id="cinEmploye" name="cinEmploye" placeholder="Entre votre CIN" type="text" required="required" class="form-control">
+            </div>
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="matricule" class="col-4 col-form-label">Matricule</label>
+        <div class="col-8">
+            <input id="matricule" name="matricule" placeholder="Matricule" type="text" class="form-control">
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="nom" class="col-4 col-form-label">Nom</label>
+        <div class="col-8">
+            <input id="nom" name="nom" placeholder="Votre Nom" type="text" required="required" class="form-control">
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="prenom" class="col-4 col-form-label">Prénom</label>
+        <div class="col-8">
+            <input id="prenom" name="prenom" placeholder="Votre prénom" type="text" required="required" class="form-control">
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="adresse" class="col-4 col-form-label">Adresse</label>
+        <div class="col-8">
+            <input id="adresse" name="adresse" placeholder="Votre adresse" type="text" required="required" class="form-control">
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label for="dateNaissance" class="col-4 col-form-label">Date de naissance</label>
+        <div class="col-8">
+            <input id="dateNaissance" name="dateNaissance" placeholder="Votre adresse" type="date" required="required" class="form-control">
+        </div>
+    </div>
+
+
+    <div class="form-group row">
+        <label for="salaire" class="col-4 col-form-label">Salaire</label>
+        <div class="col-8">
+            <input id="salaire" name="salaire" placeholder="Votre salaire" type="number" required="required" class="form-control">
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="situationSociale" class="col-4 col-form-label">Situation Sociale</label>
+        <div class="col-8">
+            <input id="situationSociale" name="situationSociale" placeholder="Votre Situation Sociale" type="text" required="required" class="form-control">
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="numTel" class="col-4 col-form-label">Numéro de Telephone</label>
+        <div class="col-8">
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <div class="input-group-text">+216</div>
+                </div>
+                <input id="numTel" name="numTel" placeholder="Numéro de Telephone " type="number" required="required" class="form-control">
+            </div>
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="nombreEnfants" class="col-4 col-form-label">Nombre d'enfants</label>
+        <div class="col-8">
+            <input id="nombreEnfants" name="nombreEnfants" placeholder="Nombre d'enfants" type="number" required="required" class="form-control">
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="nombreEnfantsEndicapes" class="col-4 col-form-label">Nombre d'enfants Endicapes</label>
+        <div class="col-8">
+            <input id="nombreEnfantsEndicapes" name="nombreEnfantsEndicapes" placeholder="Nombre d'enfants Endicapes" type="number" required="required" class="form-control">
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="nombreEnfantsETD" class="col-4 col-form-label">Nombre d'enfants etudiant</label>
+        <div class="col-8">
+            <input id="nombreEnfantsETD" name="nombreEnfantsETD" placeholder="Nombre d'enfants etudiant " type="number" class="form-control" required="required">
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="nombreEnfantsEMP" class="col-4 col-form-label">Nombre d'enfants employée</label>
+        <div class="col-8">
+            <input id="nombreEnfantsEMP" name="nombreEnfantsEMP" placeholder="Nombre d'enfants employée" type="number" class="form-control" required="required">
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="etatLogement" class="col-4 col-form-label">Etat Logement</label>
+        <div class="col-8">
+            <input id="etatLogement" name="etatLogement" placeholder="Etat Logement" type="text" class="form-control" required="required">
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="depenseLoyer" class="col-4 col-form-label">Depense Loyer</label>
+        <div class="col-8">
+            <input id="depenseLoyer" name="depenseLoyer" placeholder="Depense Loyer" type="number" class="form-control" required="required">
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="administration" class="col-4 col-form-label">Administration</label>
+        <div class="col-8">
+            <input id="administration" name="administration" placeholder="Administration " type="text" class="form-control" required="required">
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label class="col-4 col-form-label" for="codeEvenement">Evenements</label>
+        <select    id="codeEvenement" th:name="codeEvenement" class="form-control col-8">
+            <option   th:each="evenement : ${evenements}" th:value="${evenement.codeEvenement}" th:text="${evenement.description +' , '+evenement.montant.toString()+' dt , '+evenement.dateEvenement.toString()}"></option>
+        </select>
+    </div>
+
+    <div class="form-group row">
+        <div class="offset-4 col-8 mt4" >
+            <button name="submit" type="submit" class="btn btn-primary">Submit</button>
+        </div>
+    </div>
+</form>
+
+</div>
+
+</body>
+</html>
